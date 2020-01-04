@@ -2,14 +2,10 @@
 #define _MONTY_H_
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-int line;
-char *buff;
-FILE *fd;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -40,27 +36,20 @@ typedef struct instruction_s
 } instruction_t;
 
 char *read_file(char *filename);
-void (*opcode_handler(char *opcode))(stack_t **, unsigned int);
 
 /*I/O functions */
-void push(char *arg, stack_t **stack);
-void pop(stack_t **stack, unsigned int line_number);
+stack_t *push(int value, stack_t **stack);
+void pop(stack_t **stack);
 
 /*printing functions */
-void pall(stack_t **stack, unsigned int line_number);
-void pint(stack_t **stack, unsigned int line_number);
-void pstr(stack_t **stack, unsigned int line_number);
-void pchar(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack);
+void pint(stack_t **stack);
 
 /*Calculation funcitons */
-void _add(stack_t **stack, unsigned int line_number);
-void _sub(stack_t **stack, unsigned int line_number);
-void _mul(stack_t **stack, unsigned int line_number);
-void _div(stack_t **stack, unsigned int line_number);
-void _mod(stack_t **stack, unsigned int line_number);
-void swap(stack_t **stack, unsigned int line_number);
-
-void exit_failure(stack_t **st, const char *mess);
-void free_stack(stack_t **st);
+void _add(stack_t **stack);
+void _sub(stack_t **stack);
+void _mul(stack_t **stack);
+void _div(stack_t **stack);
+void _mod(stack_t **stack);
 
 #endif /*_MONTY_H_*/
