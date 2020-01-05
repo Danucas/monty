@@ -7,9 +7,25 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-int line;
-char *buff;
-FILE *fd;
+#include <stdbool.h>
+
+/**
+ * struct monty_s - Monty global variables used
+ * @line: Integer number of line
+ * @buff: The file content
+ * @fd: The file
+ * @arg: The args
+ */
+typedef struct monty_s
+{
+	int line;
+	char *buff;
+	FILE *fd;
+	char *arg;
+} monty_t;
+
+monty_t m_var;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -43,7 +59,7 @@ char *read_file(char *filename);
 void (*opcode_handler(char *opcode))(stack_t **, unsigned int);
 
 /*I/O functions */
-void push(char *arg, stack_t **stack);
+void push(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 
 /*printing functions */
@@ -62,5 +78,5 @@ void swap(stack_t **stack, unsigned int line_number);
 
 void exit_failure(stack_t **st, const char *mess);
 void free_stack(stack_t **st);
-
+void free_all(stack_t **st);
 #endif /*_MONTY_H_*/

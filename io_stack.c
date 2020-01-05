@@ -1,27 +1,61 @@
 #include "monty.h"
 /**
-*push - push value to the stack
-*@arg: value to be pushed
-*@stack: pointer to the top element
+*is_dig - push value to the stack
+*@argu: value to be pushed
 *Return: void
  */
-void push(char *arg, stack_t **stack)
+int is_dig(char *argu)
 {
-	/*printf("%d\n", value);*/
+	int pos = 0;
+
+	if (argu == NULL)
+		return (0);
+
+	while (argu[pos] != '\0')
+	{
+		if ((argu[pos] >= 48 && argu[pos] <= 57) || (argu[pos] == '-' && pos == 0))
+		{
+			pos++;
+		} else
+		{
+			return (0);
+		}
+	}
+	return (1);
+}
+
+/**
+*push - push value to the stack
+*@stack: pointer to the top element
+*@line_number: pointer to the top element
+*Return: void
+ */
+void push(stack_t **stack, unsigned int line_number)
+{
 	stack_t *stack_new;
 	int value;
+	bool failed;
 
-	if (arg)
-		value = atoi(arg);
+	if (m_var.arg)
+	{
+		failed = is_dig(m_var.arg) ? true : false;
+		if (!failed)
+		{
+			exit_failure(stack, "L%d: usage: push integer\n");
+		} else
+		{
+			value = atoi(m_var.arg);
+		}
+	}
 	else
 	{
-		printf("L<%d>: Error\n", line);
-		exit(EXIT_FAILURE);
+		exit_failure(stack, "L%d: usage: push integer\n");
 	}
 	stack_new = malloc(sizeof(stack_t));
 	if (!stack_new)
 	{
-		printf("Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
+		free_all(stack);
 		exit(EXIT_FAILURE);
 	}
 	stack_new->prev = NULL;
@@ -34,6 +68,7 @@ void push(char *arg, stack_t **stack)
 		(*stack)->prev = stack_new;
 		*stack = stack_new;
 	}
+	(void) line_number;
 }
 
 /**
@@ -52,6 +87,8 @@ void pop(stack_t **stack, unsigned int line_number)
 			st->next->prev = NULL;
 		*stack = st->next;
 		free(st);
+	} else
+	{	exit_failure(stack, "L%d: can't pop an empty stack\n");
 	}
 	(void) line_number;
 }
@@ -73,8 +110,7 @@ void swap(stack_t **st, unsigned int line_number)
 	}
 	else
 	{
-		printf("L<%d>: can't swap stack too short\n", __LINE__);
-		exit(EXIT_FAILURE);
+		exit_failure(st, "L%d: can't swap, stack too short\n");
 	}
 	(void) st;
 	(void) line_number;

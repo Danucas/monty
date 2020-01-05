@@ -28,6 +28,10 @@ void pint(stack_t **stack, unsigned int line_number)
 
 	if (st != NULL)
 		printf("%d\n", st->n);
+	else
+	{
+		exit_failure(stack, "L%d: can't pint, stack empty\n");
+	}
 	(void) line_number;
 }
 
@@ -76,9 +80,13 @@ void pchar(stack_t **stack, unsigned int line_number)
 			printf("%c\n", st->n);
 		else
 		{
-			exit_failure(stack, "can't pchar, value out of range\n");
+			exit_failure(stack, "L%d: can't pchar, value out of range\n");
 		}
 		st = st->next;
+	} else
+	{
+		exit_failure(stack, "L%d: can't pchar, stack empty\n");
 	}
+
 	(void) line_number;
 }

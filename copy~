@@ -1,7 +1,0 @@
-#!/bin/bash
-
-ls holberton/monty |
-while read file
-do
-	cp -r "holberton/monty/${file}" $file
-done
