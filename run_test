@@ -7,11 +7,13 @@ run_unit_test()
     echo "output: "
     ./monty "bytecodes/${file}" 2> err
     echo "exit code " $?
+    echo "===="
     chars=$(wc -c err | cut -d" " -f1)
     if [[ $chars != 0 ]]
     then
 	echo -e "\033[31mError Output $(cat err)\033[0m"
     fi
+
 }
 
 

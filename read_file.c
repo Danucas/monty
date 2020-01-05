@@ -1,5 +1,19 @@
 #include "monty.h"
 /**
+ * is_amonty_file - read the content of a monty file.
+ * @filename: The file  to a file
+ * Return: Always 0.
+ */
+int is_amonty_file(char *filename)
+{
+	int len = strlen(filename);
+
+	len--;
+	if (filename[len - 1] == '.' && filename[len] == 'm')
+		return (1);
+	return (0);
+}
+/**
  * cant_open_file - read the content of a monty file.
  * @filename: The file  to a file
  * @stack: The file  to a file
@@ -9,7 +23,7 @@ void cant_open_file(char *filename, stack_t **stack)
 {
 	fprintf(stderr, "Error: Can't open file %s\n", filename);
 	free_all(stack);
-	exit(EXIT_FAILURE);
+	exit(1);
 }
 /**
  * read_file - read the content of a monty file.
@@ -33,7 +47,7 @@ char *read_file(char *filename)
 	}
 		/*TODO Malloc validate null*/
 	stat(filename, &st);
-	if ((st.st_mode & S_IFMT) != S_IFREG)
+	if ((st.st_mode & S_IFMT) != S_IFREG || !is_amonty_file(filename))
 		cant_open_file(filename, &stack);
 	m_var.fd = fopen(filename, "r");
 	if (m_var.fd == NULL)
