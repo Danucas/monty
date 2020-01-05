@@ -53,10 +53,11 @@ void pstr(stack_t **stack, unsigned int line_number)
 	{
 		while (st != NULL)
 		{
-			if (st->n >= 33 && st->n <= 127)
-				printf("%c\n", st->n);
+			if (st->n >= 32 && st->n <= 127)
+				printf("%c", st->n);
 			else
 			{
+				printf("\n");
 				return;
 			}
 			st = st->next;
