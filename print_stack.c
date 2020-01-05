@@ -57,11 +57,12 @@ void pstr(stack_t **stack, unsigned int line_number)
 				printf("%c", st->n);
 			else
 			{
-				printf("\n");
-				return;
+				break;
 			}
 			st = st->next;
 		}
+		printf("\n");
+		fflush(stdout);
 		(void) line_number;
 	}
 }
