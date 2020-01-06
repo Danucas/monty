@@ -13,13 +13,15 @@ void rotl(stack_t **st, unsigned int line_number)
 	{
 		if (!next->next)
 		{
-			*st = top->next;
 			if (top->next)
+			{
+				*st = top->next;
 				top->next->prev = NULL;
-			top->next = NULL;
-			top->prev = next;
-			next->next = top;
-			break;
+				top->next = NULL;
+				top->prev = next;
+				next->next = top;
+				break;
+			}
 		}
 		next = next->next;
 	}
