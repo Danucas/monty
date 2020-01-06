@@ -13,17 +13,17 @@ void rotl(stack_t **st, unsigned int line_number)
 	if (next)
 	{
 		tmp = next->n;
-	}
-	while (next)
-	{
-		if (!next->next)
+		while (next)
 		{
-			tmp2 = next->n;
-			next->n = tmp;
+			if (!next->next)
+			{
+				tmp2 = next->n;
+				next->n = tmp;
+			}
+			next = next->next;
 		}
-		next = next->next;
+		(*st)->n = tmp2;
 	}
-	(*st)->n = tmp2;
 	(void) line_number;
 }
 /**
