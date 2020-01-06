@@ -1,5 +1,4 @@
-push 0
-push 12
-push 16
-push 
-pall
+pushito
+push 2$
+push 3$
+pall$

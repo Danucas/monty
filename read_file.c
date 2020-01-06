@@ -10,8 +10,11 @@ int is_amonty_file(char *filename)
 	int len = strlen(filename);
 
 	len--;
-	if (filename[len - 1] == '.' && filename[len] == 'm')
-		return (1);
+	if (len > 1)
+	{
+		if (filename[len - 1] == '.' && filename[len] == 'm')
+			return (1);
+	}
 	return (0);
 }
 /**
