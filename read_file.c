@@ -43,9 +43,9 @@ char *read_file(char *filename)
 	s = stat(filename, &st);
 	if (s == 0)
 	{
-		/*if ((st.st_mode & S_IFMT) != S_IFREG || !is_amonty_file(filename))*/
-		if (!is_amonty_file(filename))
+		if ((st.st_mode & S_IFMT) != S_IFREG)
 			cant_open_file(filename, &stack);
+		/*if (!is_amonty_file(filename))*/
 	} else
 	{ cant_open_file(filename, &stack);
 	}
