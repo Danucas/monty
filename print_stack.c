@@ -78,7 +78,7 @@ void pchar(stack_t **stack, unsigned int line_number)
 
 	if (st != NULL)
 	{
-		if (st->n >= 33 && st->n <= 127)
+		if (st->n >= 32 && st->n <= 126)
 			printf("%c\n", st->n);
 		else
 		{

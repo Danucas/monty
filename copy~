@@ -1,0 +1,7 @@
+#!/bin/bash
+ls ~/monty |
+while read file
+do
+    echo "coping ${file}"
+    cp -r "/home/dan/monty/${file}" "${file}"
+done
