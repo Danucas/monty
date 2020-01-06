@@ -41,7 +41,7 @@ void rotr(stack_t **st, unsigned int line_number)
 	{
 		if (!last->next)
 		{
-			if(last->prev)
+			if (last->prev)
 			{
 				last->prev->next = NULL;
 				last->prev = NULL;
