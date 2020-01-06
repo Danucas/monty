@@ -34,9 +34,39 @@
 >[<+>-]<<-]
 
 #Pointing to #3 and print
->>>.
+>>>
 
 #Mov result to #0
-[<<<+>>>-]<<<.
+[<<<+>>>-]<<<
 
-[]
+#Copy #0 to #1
+[>+>+<<-]>>[<<+>>-]<<
+
+#push #4 10
+>>>>++++++++++<<<
+#Loop in #1 end in #0
+[>[-]>>[>+<<<+<->>>-]<+>>[<+>-]<<<<-]<
+
+#clear #0 #1
+[-]>[-]
+
+#move #3 to #0 and #2 to #1
+>>[<<<+>>>-]
+<[<+>-]
+
+
+#clear #0 #1
+
+#pointer in #1
+#pointer in #3 clearing
+>>[-]
+++++++
+#multiplying 6 times 8 setting value un #2
+[<++++++++>-]
+#pointer in #2 adding 48 to #0 and #3 adding 48 to #1
+<
+
+[<<+>+>-]
+
+<<.
+>.
